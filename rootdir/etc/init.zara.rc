@@ -26,25 +26,49 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-import init.m4.usb.rc
+import init.zara.usb.rc
 
 on init
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage/emulated 0555 root root
-    mkdir /storage/usbdisk 0000 system system
+    mkdir /storage/ext_sd 0700 root root
+    mkdir /mnt/media_rw/ext_sd 0700 media_rw media_rw
+    mkdir /storage/usbdisk 0700 system system
     mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
 
     export EXTERNAL_STORAGE /storage/emulated/legacy
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
     export EMULATED_STORAGE_TARGET /storage/emulated
+    export SECONDARY_STORAGE /storage/ext_sd:/storage/usbdisk
 
     # for backwards compatibility
     symlink /storage/emulated/legacy /sdcard
     symlink /storage/emulated/legacy /mnt/sdcard
     symlink /storage/emulated/legacy /storage/sdcard0
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
-    symlink /storage/usbdisk /usbdisk
-    symlink /storage/usbdisk /mnt/usbdisk
+    symlink /storage/ext_sd /sdcard2
+    symlink /storage/ext_sd /mnt/media_rw/ext_sd
+
+    symlink /storage/usb      /mnt/usbdisk
+
+    #set G-Sensor and Compass permissions
+    chown compass system /dev/akm8975_aot
+    chown compass system /dev/akm8975_daemon
+    chown compass system /dev/bma150
+    chown system system /sys/class/htc_accelerometer/accelerometer/enable_cir_interrupt
+    chown system system /sys/class/bma250_powerkey/bma250/clear_powerkey_flag
+    chmod 0640 /dev/akm8975_aot
+    chmod 0640 /dev/akm8975_daemon
+    chmod 0660 /dev/bma150
+    chmod 0660 /sys/class/htc_accelerometer/accelerometer/enable_cir_interrupt
+    chmod 0660 /sys/class/bma250_powerkey/bma250/clear_powerkey_flag
+
+    #htc sensorhub
+    chown system system /sys/class/bma250_powerkey/bma250/clear_powerkey_flag
+    chmod 0660 /sys/class/bma250_powerkey/bma250/clear_powerkey_flag
+    chown system system /dev/cwmcu
+    chmod 0666 /dev/cwmcu
+
 
 # On emmc mount the partition containing firmware
 on fs
@@ -55,11 +79,11 @@ on fs
     mkdir /firmware 0771 system system
     mkdir /vendor 0771 system system
     mkdir /vendor/firmware 0771 system system
-    mkdir /firmware_radio 0771 system system
-    mkdir /firmware_q6 0771 system system
+    mkdir /firmware/radio 0771 system system
+    mkdir /firmware/q6 0771 system system
 
     # mount all mmc partitions
-    mount_all ./fstab.m4
+    mount_all ./fstab.zara
 
     mkdir /mnt/qcks 0700 root system
     mount tmpfs tmpfs /mnt/qcks size=20m,mode=0750,gid=1000
@@ -97,12 +121,10 @@ on post-fs-data
 
     # Chown polling nodes as needed from UI running on system server
     chmod 0664 /sys/devices/platform/msm_sdcc.1/polling
-    chmod 0664 /sys/devices/platform/msm_sdcc.2/polling
     chmod 0664 /sys/devices/platform/msm_sdcc.3/polling
     chmod 0664 /sys/devices/platform/msm_sdcc.4/polling
 
     chown system system /sys/devices/platform/msm_sdcc.1/polling
-    chown system system /sys/devices/platform/msm_sdcc.2/polling
     chown system system /sys/devices/platform/msm_sdcc.3/polling
     chown system system /sys/devices/platform/msm_sdcc.4/polling
 
@@ -223,6 +245,16 @@ on boot
     mkdir /data/misc/gpsone_d 0770 system gps
 # --SSD_GPS
 
+#++SSD_AUDIO
+    chown system audio /dev/tfa9887
+    chmod 0660 /dev/tfa9887
+    chown system audio /dev/tfa9887l
+    chmod 0660 /dev/tfa9887l
+
+    mkdir /data/audio 0775 media audio
+    chmod 2775 /data/audio
+#--SSD_AUDIO
+
 # HTC SSD Camera
     chown media system /sys/camera_htccallback/htccallback
     chown media system /sys/camera_attrs/videochat
@@ -284,6 +316,10 @@ service netmgrd /system/bin/netmgrd
 service sdcard /system/bin/sdcard /data/media /mnt/shell/emulated 1023 1023
     class late_start
 
+service fuse_ext_sd /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/ext_sd /storage/ext_sd
+    class late_start
+    disabled
+
 service thermald /system/bin/thermald
     class main
     user root
@@ -340,6 +376,14 @@ service wpa_supplicant /system/bin/wpa_supplicant \
 service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
     class late_start
     disabled
+
+service network_init  /system/bin/sh /init.network.sh
+    class main
+    oneshot
+
+service gyrocali_init  /system/bin/sh /init.gyrocali.sh
+    class main
+    oneshot
 
 on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 384000

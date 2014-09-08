@@ -23,19 +23,19 @@ $(call inherit-product, device/htc/msm8960-common/msm8960.mk)
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Boot animation
-TARGET_SCREEN_HEIGHT := 1280
-TARGET_SCREEN_WIDTH := 720
+TARGET_SCREEN_HEIGHT := 960
+TARGET_SCREEN_WIDTH := 540
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    fstab.m4 \
-    init.m4.rc \
-    init.m4.usb.rc \
-    ueventd.m4.rc
+    fstab.zara \
+    init.zara.rc \
+    init.zara.usb.rc \
+    ueventd.zara.rc
 
 # Recovery
 PRODUCT_PACKAGES += \
-    init.recovery.m4.rc \
+    init.recovery.zara.rc \
     lpm.rc \
     choice_fn \
     power_test \
@@ -44,8 +44,11 @@ PRODUCT_PACKAGES += \
 
 # Qualcomm scripts
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/init.gyro.sh:root/init.gyro.sh \
+    $(LOCAL_PATH)/configs/init.network.sh:root/init.network.sh \
     $(LOCAL_PATH)/configs/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
-    $(LOCAL_PATH)/configs/init.qcom.fm.sh:/system/etc/init.qcom.fm.sh
+    $(LOCAL_PATH)/configs/init.qcom.q6_links.sh:/system/etc/init.qcom.q6_links.sh \
+    $(LOCAL_PATH)/configs/init.qcom.radio_links.sh:/system/etc/init.qcom.radio_links.sh
 
 # QC thermald config
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/configs/thermald.conf:system/etc/thermald.conf
@@ -91,10 +94,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
 
-# Keystore
-#PRODUCT_PACKAGES += \
-#    keystore.msm8960
-
 # Torch
 PRODUCT_PACKAGES += \
     Torch
@@ -111,22 +110,22 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.timed.enable=true \
     persist.gps.qmienabled=true \
-    ro.opengles.version=196608
+    ro.opengles.version=131072
 
 # We have enough space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
-PRODUCT_CHARACTERISTICS := nosdcard
+PRODUCT_CHARACTERISTICS := default
 
 # Set build date
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 # Device uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
-PRODUCT_AAPT_PREF_CONFIG := xhdpi
+PRODUCT_AAPT_CONFIG := normal hdpi
+PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 # call dalvik heap config
-$(call inherit-product-if-exists, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
+$(call inherit-product-if-exists, frameworks/native/build/phone-hdpi-dalvik-heap.mk)
 
 # call the proprietary setup
-$(call inherit-product, vendor/htc/m4/m4-vendor.mk)
+$(call inherit-product, vendor/htc/zara/zara-vendor.mk)

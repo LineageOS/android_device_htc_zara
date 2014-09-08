@@ -12,7 +12,7 @@ bin/thermald
 etc/agps_rm
 
 # Bluetooth
-etc/firmware/BCM4334B0_002.001.013.1352.1353.hcd
+etc/firmware/BCM4334B0_002.001.013.1352.1354.hcd
 
 # Adreno
 etc/firmware/a300_pfp.fw
@@ -23,24 +23,23 @@ etc/firmware/vidc.b02
 etc/firmware/vidc.b03
 etc/firmware/vidc.mdt
 etc/firmware/vidc_1080p.fw
-vendor/lib/egl/eglsubAndroid.so
-vendor/lib/egl/libEGL_adreno.so
-vendor/lib/egl/libGLESv1_CM_adreno.so
-vendor/lib/egl/libGLESv2S3D_adreno.so
-vendor/lib/egl/libGLESv2_adreno.so
-vendor/lib/egl/libq3dtools_adreno.so
-vendor/lib/libadreno_utils.so
-vendor/lib/libc2d2_a3xx.so
-vendor/lib/libc2d2_z180.so
-vendor/lib/libC2D2.so
-vendor/lib/libCB.so
-vendor/lib/libgsl.so
-vendor/lib/libllvm-a3xx.so
-vendor/lib/libllvm-arm.so
-vendor/lib/libOpenCL.so
-vendor/lib/libOpenVG.so
-vendor/lib/libsc-a2xx.so
-vendor/lib/libsc-a3xx.so
+lib/egl/eglsubAndroid.so
+lib/egl/libEGL_adreno200.so
+lib/egl/libGLES_android.so
+lib/egl/libGLESv1_CM_adreno200.so
+lib/egl/libGLESv2S3D_adreno200.so
+lib/egl/libGLESv2_adreno200.so
+lib/egl/libq3dtools_adreno200.so
+lib/libc2d2_a3xx.so
+lib/libc2d2_z180.so
+lib/libC2D2.so
+lib/libCB.so
+lib/libgsl.so
+lib/libllvm-a3xx.so
+lib/libOpenCL.so
+lib/libOpenVG.so
+lib/libsc-a2xx.so
+lib/libsc-a3xx.so
 
 # Audio
 lib/libacdbloader.so
@@ -51,7 +50,7 @@ lib/libcsd-client.so
 etc/firmware/ILP0100_IPM_Code_out.bin
 etc/firmware/ILP0100_IPM_Data_out.bin
 etc/firmware/lscbuffer_rev2.bin
-lib/hw/camera.vendor.msm8960.so
+lib/hw/camera.msm8960.so
 lib/libBeautyChat.so
 lib/libcameraasd.so
 lib/libcameraface.so
@@ -109,6 +108,7 @@ lib/libmmjpeg.so
 lib/libmmstillomx.so
 lib/liboemcamera.so
 lib/libposteffect.so
+lib/libwriteback.so
 
 # GPS
 lib/libgeofence.so
@@ -143,11 +143,6 @@ lib/libril-qcril-hook-oem.so
 
 # Sensors
 lib/hw/sensors.msm8960.so
-lib/libimu.so
-lib/libmllite.so
-lib/libmlplatform.so
-lib/libmpl.so
-lib/libmpl_jni.so
 
 # TrustZone
 etc/firmware/hcheck.b00
@@ -164,7 +159,7 @@ etc/firmware/tzapps.mdt
 # Widevine
 lib/libQSEEComAPI.so
 vendor/lib/libwvm.so
-vendor/lib/libWVStreamControlAPI_L1.so
+vendor/lib/libWVStreamControlAPI_L3.so
 
 # Wifi
 etc/firmware/fw_bcm4334.bin
