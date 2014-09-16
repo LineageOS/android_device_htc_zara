@@ -111,6 +111,7 @@ BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
 
 # Recovery
 TARGET_RECOVERY_FSTAB := device/htc/zara/rootdir/etc/fstab.zara
+BOARD_RECOVERY_BLDRMSG_OFFSET := 2048
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 TARGET_USERIMAGES_USE_EXT4 := true
