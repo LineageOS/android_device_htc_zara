@@ -34,6 +34,8 @@ TARGET_SPECIFIC_HEADER_PATH := device/htc/zara/include
 TARGET_BOOTLOADER_BOARD_NAME := zara
 TARGET_BOARD_PLATFORM := msm8960
 
+TARGET_OTA_ASSERT_DEVICE := zara,zaraul,desire601
+
 # Kernel
 BOARD_KERNEL_BASE := 0x80600000
 BOARD_KERNEL_PAGESIZE := 2048
@@ -72,7 +74,7 @@ BOARD_PROVIDES_LIBRIL := true
 COMMON_GLOBAL_CFLAGS += -DNEW_LIBRIL_HTC
 
 # Tuning
-BOARD_HARDWARE_CLASS := device/htc/m7-common/cmhw
+BOARD_HARDWARE_CLASS := device/htc/m4/cmhw
 
 # USB
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
