@@ -71,6 +71,9 @@ BOARD_HAVE_NEW_QC_GPS := true
 BOARD_PROVIDES_LIBRIL := true
 COMMON_GLOBAL_CFLAGS += -DNEW_LIBRIL_HTC
 
+# Tuning
+BOARD_HARDWARE_CLASS := device/htc/m7-common/cmhw
+
 # USB
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
