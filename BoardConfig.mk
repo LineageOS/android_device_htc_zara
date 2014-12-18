@@ -74,7 +74,7 @@ BOARD_PROVIDES_LIBRIL := true
 COMMON_GLOBAL_CFLAGS += -DNEW_LIBRIL_HTC
 
 # Tuning
-BOARD_HARDWARE_CLASS := device/htc/m4/cmhw
+BOARD_HARDWARE_CLASS := device/htc/zara/cmhw
 
 # USB
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
