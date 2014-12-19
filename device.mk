@@ -61,15 +61,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
 
 
-# Recovery
-PRODUCT_PACKAGES += \
-    init.recovery.zara.rc \
-    lpm.rc \
-    choice_fn \
-    power_test \
-    offmode_charging \
-    detect_key
-
 # Qualcomm scripts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.gyro.sh:root/init.gyro.sh \
