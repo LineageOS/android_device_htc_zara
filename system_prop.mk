@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2011 The Android Open-Source Project
+# Copyright (C) 2014 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,5 +14,20 @@
 # limitations under the License.
 #
 
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/device.mk
+# Display
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.opengles.version=131072 \
+    ro.sf.lcd_density=240
+
+# Performance
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.extension_library=/system/lib/libqc-opt.so
+
+# Recovery
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.cwm.forbid_format=/firmware_radio,/firmware_q6,/devlog \
+    ro.cwm.forbid_mount=/firmware_radio,/firmware_q6,/devlog
+
+# Time services
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.timed.enable=true
