@@ -94,6 +94,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/sr_touchscreen.kl:system/usr/keylayout/sr_touchscreen.kl \
     $(LOCAL_PATH)/keylayout/synaptics-rmi-touchscreen.kl:system/usr/keylayout/synaptics-rmi-touchscreen.kl
 
+# Keystore
+PRODUCT_PACKAGES += \
+    keystore.msm8960
 
 # Ramdisk
 PRODUCT_PACKAGES += \
