@@ -3,9 +3,6 @@ $(call inherit-product, device/htc/zara/full_zara.mk)
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
-# Inherit device configuration
-$(call inherit-product, device/htc/zara/device.mk)
-
 # Device naming
 PRODUCT_DEVICE := zara
 PRODUCT_NAME := cm_zara
