@@ -86,8 +86,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/synaptics-rmi-touchscreen.kl:system/usr/keylayout/synaptics-rmi-touchscreen.kl
 
 # Keystore
-PRODUCT_PACKAGES += \
-    keystore.msm8960
+#PRODUCT_PACKAGES += \
+  #  keystore.msm8960
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -115,7 +115,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:/system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:/system/etc/wifi/wpa_supplicant_overlay.conf
 
-PRODUCT_CHARACTERISTICS := default
 
 # Set build date
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
