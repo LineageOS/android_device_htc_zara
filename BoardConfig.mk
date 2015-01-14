@@ -59,13 +59,11 @@ TARGET_DISPLAY_INSECURE_MM_HEAP := true
 # GPS
 BOARD_HAVE_NEW_QC_GPS := true
 
-
-BOARD_USES_LEGACY_MMAP := true
-
+# Touch screen - we use synaptics 3k
+BOARD_USE_LEGACY_TOUCHSCREEN := true
 
 # CMHW
 BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw
-
 
 # Filesystem
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
@@ -90,6 +88,7 @@ TARGET_KERNEL_SOURCE := kernel/htc/msm8960
 BOARD_PROVIDES_LIBRIL := true
 BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
 BOARD_RIL_FIVE_SEARCH_RESPONSES := true
+BOARD_USES_LEGACY_MMAP := true
 
 # SELinux
 -include device/qcom/sepolicy/sepolicy.mk
@@ -122,9 +121,6 @@ BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.zara
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_USERIMAGES_USE_EXT4 := true
-
-# Touch screen - we use synaptics 3k
-BOARD_USE_LEGACY_TOUCHSCREEN := true
 
 # inherit from the proprietary version
 -include vendor/htc/zara/BoardConfigVendor.mk
