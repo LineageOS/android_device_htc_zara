@@ -94,6 +94,7 @@ PRODUCT_PACKAGES += \
     fstab.zara \
     init.zara.rc \
     init.zara.usb.rc \
+    loggy.sh	\
     ueventd.zara.rc
 
 # Thermal
