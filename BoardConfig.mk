@@ -93,6 +93,9 @@ TARGET_KERNEL_SOURCE := kernel/htc/msm8960
 # SELinux
 -include device/qcom/sepolicy/sepolicy.mk
 
+BOARD_SEPOLICY_DIRS += \
+    device/htc/zara/sepolicy
+
 # Vold
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 BOARD_VOLD_MAX_PARTITIONS := 39
