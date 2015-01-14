@@ -91,10 +91,10 @@ PRODUCT_COPY_FILES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    fstab.zara \
-    init.zara.rc \
-    init.zara.usb.rc \
-    ueventd.zara.rc
+    fstab.qcom \
+    init.qcom.rc \
+    init.qcom.usb.rc \
+    ueventd.qcom.rc
 
 # Thermal
 PRODUCT_COPY_FILES += \
