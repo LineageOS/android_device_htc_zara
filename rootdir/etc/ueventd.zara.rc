@@ -1,5 +1,3 @@
-/dev/akm8973_aot          0640   compass    system
-/dev/akm8973_daemon       0640   compass    system
 /dev/audience_a1026*      0660   system     audio
 /dev/audience_a1028       0660   system     audio
 /dev/block/mmcblk0p17  0660  system     system
@@ -37,6 +35,7 @@
 /dev/msm_vidc_dec      0660  system     audio
 /dev/msm_vidc_dec_sec  0660  system     audio
 /dev/msm_vidc_enc      0660  system     audio
+/dev/msm_vidc_enc_sec  0660  system     audio
 /dev/msm_vidc_reg      0660  system     audio
 /dev/msm_voicememo     0660  system     audio
 /dev/msm_wma           0660  system     audio
@@ -45,10 +44,12 @@
 /dev/mtp_usb           0660  root       mtp
 /dev/oncrpc/*          0660  root       system
 /dev/qce               0660  system     audio
+/dev/qseecom           0660  system     drmrpc
 /dev/qemu_trace        0666  system     system
 /dev/radio0            0644  fm_radio   fm_radio
 /dev/rawchip0          0660  system     camera
 /dev/rmnet_ctrl        0640  radio      radio
+/dev/rmnet_mux_ctrl    0640  radio      radio
 /dev/sdio_tty_ciq_00   0660   system     system
 /dev/sdioctl0          0640   radio      radio
 /dev/sdioctl1          0640   radio      radio
@@ -59,12 +60,13 @@
 /dev/sdioctl6         0640   radio      radio
 /dev/sdioctl7         0640   radio      radio
 /dev/sdioctl8         0640   radio      radio
+/dev/rt5501            0660  system     audio
 /dev/rtc0              0600  system     system
-/dev/smd0              0640  radio      radio
+/dev/smd0              0660  system     system
 /dev/smd2              0660  bluetooth  bluetooth
 /dev/smd3              0660  bluetooth  bluetooth
 /dev/smd4              0660  system     system
-/dev/smd7              0640  radio      radio
+/dev/smd7              0660  bluetooth  bluetooth
 /dev/smdcntl0          0640  radio      radio
 /dev/smdcntl1          0640  radio      radio
 /dev/smdcntl2          0640  radio      radio
@@ -92,6 +94,9 @@
 /dev/video*            0660  system     camera
 /sys/devices/virtual/input/input*   enable      0660  root   input
 /sys/devices/virtual/input/input*   poll_delay  0660  root   input
+/sys/devices/platform/htc_battery/power_supply/battery              navigation                0220  system     system
+/sys/devices/platform/htc_battery/power_supply/battery              network_search            0220  radio      radio
+/sys/devices/platform/htc_battery/power_supply/battery              phone_call                0220  radio      radio
 /sys/devices/platform/msm_sdcc.*                                    polling                   0664  system     system
 /sys/devices/system/cpu/cpu*                                        cpufreq/scaling_max_freq  0644  system     system
 /sys/devices/system/cpu/cpu*                                        cpufreq/scaling_min_freq  0644  system     system
