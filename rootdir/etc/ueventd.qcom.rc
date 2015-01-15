@@ -49,6 +49,7 @@
 /dev/radio0            0644  fm_radio   fm_radio
 /dev/rawchip0          0660  system     camera
 /dev/rmnet_ctrl        0640  radio      radio
+/dev/rfkill            0660  root       wifi
 /dev/rmnet_mux_ctrl    0640  radio      radio
 /dev/sdio_tty_ciq_00   0660   system     system
 /dev/sdioctl0          0640   radio      radio

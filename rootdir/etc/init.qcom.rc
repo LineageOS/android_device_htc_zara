@@ -58,12 +58,10 @@ on init
     #set G-Sensor and Compass permissions
     chown compass system /dev/akm8975_aot
     chown compass system /dev/akm8975_daemon
-    chown compass system /dev/bma150
     chown system system /sys/class/htc_accelerometer/accelerometer/enable_cir_interrupt
     chown system system /sys/class/bma250_powerkey/bma250/clear_powerkey_flag
     chmod 0640 /dev/akm8975_aot
     chmod 0640 /dev/akm8975_daemon
-    chmod 0660 /dev/bma150
     chmod 0660 /sys/class/htc_accelerometer/accelerometer/enable_cir_interrupt
     chmod 0660 /sys/class/bma250_powerkey/bma250/clear_powerkey_flag
 
@@ -175,19 +173,6 @@ on boot
     symlink /data/misc/wifi/wpa_supplicant /data/system/wpa_supplicant
     symlink /dev/socket/wpa_wlan0 /data/system/wpa_supplicant/wlan0
 
-    # For Invensense MPU3050
-    chmod 0664 /sys/class/gyro_sensors/gyro/mpu_lpm_flag
-    chown system system /sys/class/gyro_sensors/gyro/mpu_lpm_flag
-
-    # Proximity sensor
-    chown radio radio /sys/class/optical_sensors/proximity/PhoneApp_status
-    chmod 0660 /sys/class/optical_sensors/proximity/PhoneApp_status
-    chown radio radio /sys/devices/virtual/optical_sensors/proximity/ps_adc
-    chmod 0660 /sys/devices/virtual/optical_sensors/proximity/ps_adc
-    chown radio radio /sys/devices/virtual/optical_sensors/proximity/ps_canc
-    chmod 0660 /sys/devices/virtual/optical_sensors/proximity/ps_canc
-    chown system radio /sys/devices/virtual/optical_sensors/proximity/ps_kadc
-    chmod 0660 /sys/devices/virtual/optical_sensors/proximity/ps_kadc
 
     # NETWORK: NAT setting
     # To prevent out of WINDOW ACK from making
@@ -208,7 +193,6 @@ on boot
     chown bluetooth bluetooth /sys/module/htc_bdaddress/parameters/bdaddress
     setprop ro.bt.bdaddr_path /sys/module/htc_bdaddress/parameters/bdaddress
 
-# HTC SSD Peripheral UI - BEGIN
     chown system system /sys/class/leds/green/brightness
     chown system system /sys/class/leds/green/blink
     chown system system /sys/class/leds/green/off_timer
@@ -217,7 +201,6 @@ on boot
     chown system system /sys/class/leds/amber/off_timer
     chown system system /sys/devices/virtual/htc_accessory/fm/flag
     chown system system /sys/devices/virtual/htc_accessory/tty/flag
-# HTC SSD Peripheral UI - END
 
     # Torch
     chown system system /sys/class/leds/flashlight/brightness
@@ -237,7 +220,6 @@ on boot
     chown system system /sys/devices/virtual/graphics/fb1/format_3d
     chown system system /sys/devices/virtual/graphics/fb1/hpd
 
-# ++SSD_GPS
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
@@ -247,9 +229,7 @@ on boot
 
     # Create directory for gpsone daemon
     mkdir /data/misc/gpsone_d 0770 system gps
-# --SSD_GPS
 
-#++SSD_AUDIO
     chown system audio /dev/tfa9887
     chmod 0660 /dev/tfa9887
     chown system audio /dev/tfa9887l
@@ -257,30 +237,27 @@ on boot
 
     mkdir /data/audio 0775 media audio
     chmod 2775 /data/audio
-#--SSD_AUDIO
 
-# HTC SSD Camera
+    # Camera
     chown media system /sys/camera_htccallback/htccallback
     chown media system /sys/camera_attrs/videochat
 
-# For Flashlight Restriction
+    # For Flashlight Restriction
     chown system system /sys/camera_led_status/led_hotspot_status
     chown radio system /sys/camera_led_status/led_ril_status
 
-# Set touch permissions
+    # Set touch permissions
     chown system system /sys/android_touch/unlock
 
-# Set volume key wake up attribute file permission
+    # Set volume key wake up attribute file permission
     chown media media /sys/keyboard/vol_wakeup
 
 # Set touch permissions
     chown system system /sys/android_touch/unlock
 
-# HTC SSD Camera
     chown media system /sys/camera_htccallback/htccallback
     chown media system /sys/camera_attrs/videochat
 
-# HTC SSD Battery - BEGIN
 # for RIL to notify battery driver talking and network_search state
     chown radio radio /sys/class/power_supply/battery/phone_call
     chmod 0220 /sys/class/power_supply/battery/phone_call
@@ -288,7 +265,6 @@ on boot
     chmod 0220 /sys/class/power_supply/battery/network_search
     chown system system /sys/class/power_supply/battery/navigation
     chmod 0220 /sys/class/power_supply/battery/navigation
-# HTC SSD Battery - END
 
 # Services start here
 service akmd /system/bin/akmd
@@ -296,41 +272,8 @@ service akmd /system/bin/akmd
     user system
     group system misc input
 
-service qcamerasvr /system/bin/mm-qcamera-daemon
-    class late_start
-    user system
-    group system camera inet graphics
 
-service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
-    class main
-    user root
-
-service qmuxd /system/bin/qmuxd
-    class core
-    user radio
-    group radio audio gps
-
-service rmt_storage /system/bin/rmt_storage modem_st1 modem_st2 recovery radio_config
-    class core
-    user root
-
-service netmgrd /system/bin/netmgrd
-    class core
-
-service sdcard /system/bin/sdcard /data/media /mnt/shell/emulated 1023 1023
-    class late_start
-
-service fuse_ext_sd /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/ext_sd /storage/ext_sd
-    class late_start
-    disabled
-
-service thermald /system/bin/thermald
-    class main
-    user root
-    group root
-    disabled
-
-service dhcpcd_wlan0 /system/bin/dhcpcd -ABKLG
+service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
     disabled
     oneshot
 
@@ -338,11 +281,29 @@ service dhcpcd_p2p /system/bin/dhcpcd -ABKL
     disabled
     oneshot
 
-service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
+service dhcpcd_wlan0 /system/bin/dhcpcd -ABKLG
     disabled
     oneshot
 
-service iprenew_wlan0 /system/bin/dhcpcd -n
+
+service network_init  /system/bin/sh /init.network.sh
+    class main
+    oneshot
+
+service gyrocali_init  /system/bin/sh /init.gyrocali.sh
+    class main
+    oneshot
+
+
+service fuse_ext_sd /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/ext_sd /storage/ext_sd
+    class late_start
+    disabled
+
+service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
+    class late_start
+    disabled
+
+service iprenew_bt-pan /system/bin/dhcpcd -n
     disabled
     oneshot
 
@@ -350,9 +311,16 @@ service iprenew_p2p /system/bin/dhcpcd -n
     disabled
     oneshot
 
-service iprenew_bt-pan /system/bin/dhcpcd -n
+service iprenew_wlan0 /system/bin/dhcpcd -n
     disabled
     oneshot
+
+service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
+    class main
+    user root
+
+service netmgrd /system/bin/netmgrd
+    class core
 
 service p2p_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
@@ -366,6 +334,29 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     disabled
     oneshot
 
+service qcamerasvr /system/bin/mm-qcamera-daemon
+    class late_start
+    user system
+    group system camera inet graphics
+
+service qmuxd /system/bin/qmuxd
+    class core
+    user radio
+    group radio audio gps
+
+service rmt_storage /system/bin/rmt_storage modem_st1 modem_st2 recovery radio_config
+    class core
+    user root
+
+service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
+    class late_start
+
+service thermald /system/bin/thermald
+    class main
+    user root
+    group root
+    disabled
+
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \
@@ -375,18 +366,7 @@ service wpa_supplicant /system/bin/wpa_supplicant \
     disabled
     oneshot
 
-service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
-    class late_start
-    disabled
-
-service network_init  /system/bin/sh /init.network.sh
-    class main
-    oneshot
-
-service gyrocali_init  /system/bin/sh /init.gyrocali.sh
-    class main
-    oneshot
-
+# Properties
 on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 384000
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 384000
@@ -405,25 +385,14 @@ on property:sys.boot_completed=1
     write /sys/module/pm_8x60/modes/cpu0/power_collapse/idle_enabled 1
     write /sys/module/msm_thermal/core_control/enabled 0
     write /sys/devices/system/cpu/cpu1/online 1
-    chown -h system /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
-    chown -h system /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
-    chown -h system /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
     write /sys/module/cpu_boost/parameters/boost_ms 20
     write /sys/module/cpu_boost/parameters/sync_threshold 1242000
     write /sys/module/cpu_boost/parameters/input_boost_freq 1134000
     write /sys/module/cpu_boost/parameters/input_boost_ms 40
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 384000
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 384000
-    chown -h system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-    chown -h system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-    chown -h system /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
-    chown -h system /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
     write /sys/module/msm_thermal/core_control/enabled 1
     write /dev/cpuctl/apps/cpu.notify_on_migrate 1
-    chown -h root.system /sys/devices/system/cpu/mfreq
-    chmod -h 220 /sys/devices/system/cpu/mfreq
-    chown -h root.system /sys/devices/system/cpu/cpu1/online
-    chmod -h 664 /sys/devices/system/cpu/cpu1/online
     # Set DCVS parameters for CPU
     write /sys/module/msm_dcvs/cores/cpu0/slack_time_max_us 40000
     write /sys/module/msm_dcvs/cores/cpu0/slack_time_min_us 40000
@@ -460,14 +429,19 @@ on property:service.adb.root=1
 
 # Powersave
 on property:sys.perf.profile=0
+    stop mpdecision
+    write /sys/devices/system/cpu/cpu0/online 1
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "conservative"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "conservative"
+    write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor "ondemand"
     start mpdecision
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor conservative
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor conservative
-    write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor ondemand
 
 # Balanced
 on property:sys.perf.profile=1
-    start mpdecision
+    stop mpdecision
+    write /sys/devices/system/cpu/cpu0/online 1
+    write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "ondemand"
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "ondemand"
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold 90
@@ -478,15 +452,16 @@ on property:sys.perf.profile=1
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_multi_core 70
     write /sys/devices/system/cpu/cpufreq/ondemand/down_differential_multi_core 3
     write /sys/devices/system/cpu/cpufreq/ondemand/optimal_freq 918000
-    write /sys/devices/system/cpu/cpufreq/ondemand/sync_freq 918000
+    write /sys/devices/system/cpu/cpufreq/ondemand/sync_freq 1026000
     write /sys/devices/system/cpu/cpufreq/ondemand/up_threshold_any_cpu_load 80
-    write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor ondemand
+    write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor "ondemand"
+    start mpdecision
 
 # High performance
 on property:sys.perf.profile=2
     stop mpdecision
     write /sys/devices/system/cpu/cpu0/online 1
     write /sys/devices/system/cpu/cpu1/online 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor performance
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor performance
-    write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor performance
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "performance"
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor "performance"
+    write /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor "performance"
