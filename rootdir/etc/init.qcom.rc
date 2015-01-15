@@ -56,21 +56,14 @@ on init
     symlink /storage/usb      /mnt/usbdisk
 
     #set G-Sensor and Compass permissions
-    chown compass system /dev/akm8975_aot
-    chown compass system /dev/akm8975_daemon
     chown system system /sys/class/htc_accelerometer/accelerometer/enable_cir_interrupt
     chown system system /sys/class/bma250_powerkey/bma250/clear_powerkey_flag
-    chmod 0640 /dev/akm8975_aot
-    chmod 0640 /dev/akm8975_daemon
     chmod 0660 /sys/class/htc_accelerometer/accelerometer/enable_cir_interrupt
     chmod 0660 /sys/class/bma250_powerkey/bma250/clear_powerkey_flag
 
     #htc sensorhub
     chown system system /sys/class/bma250_powerkey/bma250/clear_powerkey_flag
     chmod 0660 /sys/class/bma250_powerkey/bma250/clear_powerkey_flag
-    chown system system /dev/cwmcu
-    chmod 0666 /dev/cwmcu
-
 
 # On emmc mount the partition containing firmware
 on fs
@@ -267,12 +260,6 @@ on boot
     chmod 0220 /sys/class/power_supply/battery/navigation
 
 # Services start here
-service akmd /system/bin/akmd
-    class main
-    user system
-    group system misc input
-
-
 service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
     disabled
     oneshot

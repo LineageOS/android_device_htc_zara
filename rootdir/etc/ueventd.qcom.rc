@@ -101,10 +101,10 @@
 /sys/devices/platform/msm_sdcc.*                                    polling                   0664  system     system
 /sys/devices/system/cpu/cpu*                                        cpufreq/scaling_max_freq  0644  system     system
 /sys/devices/system/cpu/cpu*                                        cpufreq/scaling_min_freq  0644  system     system
-/sys/devices/system/cpu/cpu*                                        online                    0644  root       system
 /sys/devices/system/cpu/cpufreq/ondemand                            io_is_busy                0644  system     system
 /sys/devices/system/cpu/cpufreq/ondemand                            sampling_down_factor      0644  system     system
 /sys/devices/system/cpu/cpufreq/ondemand                            sampling_rate             0644  system     system
+/sys/devices/system/cpu/cpu*                                        online                    0644  root       system
 /sys/devices/virtual/smdpkt/smdcntl*                                open_timeout              0664  radio      radio
 /sys/devices/virtual/timed_output/vibrator                          voltage_level             0664  system     system
 /dev/adsp/*               0660   system     audio

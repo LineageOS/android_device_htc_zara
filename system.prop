@@ -15,5 +15,3 @@ ro.baseband.arch=msm
 ro.telephony.default_network=9
 telephony.lteOnGsmDevice=1
 ro.vendor.extension_library=/system/lib/libqc-opt.so
-ro.cwm.forbid_format=/firmware_radio,/firmware_q6,/devlog
-ro.cwm.forbid_mount=/firmware_radio,/firmware_q6,/devlog
