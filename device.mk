@@ -28,9 +28,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml
 
-# System properties
--include $(LOCAL_PATH)/system_prop.mk
-
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
@@ -86,8 +83,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/synaptics-rmi-touchscreen.kl:system/usr/keylayout/synaptics-rmi-touchscreen.kl
 
 # Keystore
-#PRODUCT_PACKAGES += \
-  #  keystore.msm8960
+# PRODUCT_PACKAGES += \
+#  keystore.msm8960
 
 # Ramdisk
 PRODUCT_PACKAGES += \
