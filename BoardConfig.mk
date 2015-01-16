@@ -59,9 +59,6 @@ TARGET_DISPLAY_INSECURE_MM_HEAP := true
 # GPS
 BOARD_HAVE_NEW_QC_GPS := true
 
-# Touch screen - we use synaptics 3k
-BOARD_USE_LEGACY_TOUCHSCREEN := true
-
 # CMHW
 BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw
 
