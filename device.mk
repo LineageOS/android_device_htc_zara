@@ -60,7 +60,6 @@ PRODUCT_COPY_FILES += \
 
 # Qualcomm scripts
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/init.gyro.sh:root/init.gyro.sh \
     $(LOCAL_PATH)/configs/init.network.sh:root/init.network.sh \
     $(LOCAL_PATH)/configs/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
     $(LOCAL_PATH)/configs/init.qcom.q6_links.sh:/system/etc/init.qcom.q6_links.sh \
