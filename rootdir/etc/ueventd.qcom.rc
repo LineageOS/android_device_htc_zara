@@ -1,3 +1,4 @@
+/dev/adsp/*               0660   system     audio
 /dev/audience_a1026*      0660   system     audio
 /dev/audience_a1028       0660   system     audio
 /dev/block/mmcblk0p17  0660  system     system
@@ -51,16 +52,6 @@
 /dev/rmnet_ctrl        0640  radio      radio
 /dev/rfkill            0660  root       wifi
 /dev/rmnet_mux_ctrl    0640  radio      radio
-/dev/sdio_tty_ciq_00   0660   system     system
-/dev/sdioctl0          0640   radio      radio
-/dev/sdioctl1          0640   radio      radio
-/dev/sdioctl2         0640   radio      radio
-/dev/sdioctl3         0640   radio      radio
-/dev/sdioctl4         0640   radio      radio
-/dev/sdioctl5         0640   radio      radio
-/dev/sdioctl6         0640   radio      radio
-/dev/sdioctl7         0640   radio      radio
-/dev/sdioctl8         0640   radio      radio
 /dev/rt5501            0660  system     audio
 /dev/rtc0              0600  system     system
 /dev/smd0              0660  system     system
@@ -98,7 +89,10 @@
 /sys/devices/platform/htc_battery/power_supply/battery              navigation                0220  system     system
 /sys/devices/platform/htc_battery/power_supply/battery              network_search            0220  radio      radio
 /sys/devices/platform/htc_battery/power_supply/battery              phone_call                0220  radio      radio
+/sys/devices/platform/zara_rfkill/rfkill/rfkill0                      state                     0660  bluetooth  bluetooth
+/sys/devices/platform/zara_rfkill/rfkill/rfkill0                      type                      0660  bluetooth  bluetooth
 /sys/devices/platform/msm_sdcc.*                                    polling                   0664  system     system
+/sys/devices/platform/msm_serial_hs.0                               clock                     0660  bluetooth  bluetooth
 /sys/devices/system/cpu/cpu*                                        cpufreq/scaling_max_freq  0644  system     system
 /sys/devices/system/cpu/cpu*                                        cpufreq/scaling_min_freq  0644  system     system
 /sys/devices/system/cpu/cpufreq/ondemand                            io_is_busy                0644  system     system
@@ -107,4 +101,3 @@
 /sys/devices/system/cpu/cpu*                                        online                    0644  root       system
 /sys/devices/virtual/smdpkt/smdcntl*                                open_timeout              0664  radio      radio
 /sys/devices/virtual/timed_output/vibrator                          voltage_level             0664  system     system
-/dev/adsp/*               0660   system     audio
