@@ -9,6 +9,28 @@ bin/thermald
 
 # Configuration files
 etc/agps_rm
+etc/tfa/deftcoefA.speaker
+etc/tfa/deftcoefA_l.speaker
+etc/tfa/playback.config
+etc/tfa/playback.eq
+etc/tfa/playback.preset
+etc/tfa/playback_l.config
+etc/tfa/playback_l.eq
+etc/tfa/playback_l.preset
+etc/tfa/ring.config
+etc/tfa/ring.eq
+etc/tfa/ring.preset
+etc/tfa/ring_l.config
+etc/tfa/ring_l.eq
+etc/tfa/ring_l.preset
+etc/tfa/tfa9887.patch
+etc/tfa/tfa9887_l.patch
+etc/tfa/voice.config
+etc/tfa/voice.eq
+etc/tfa/voice.preset
+etc/tfa/voice_l.config
+etc/tfa/voice_l.eq
+etc/tfa/voice_l.preset
 
 # Bluetooth
 etc/firmware/BCM4334B0_002.001.013.1352.1354.hcd
@@ -118,6 +140,13 @@ lib/libExtendedExtractor.so
 lib/libI420colorconvert.so
 lib/libmm-color-convertor.so
 
+# Modem firmware
+etc/firmware/hcheck.b00
+etc/firmware/hcheck.b01
+etc/firmware/hcheck.b02
+etc/firmware/hcheck.b03
+etc/firmware/hcheck.mdt
+
 # QMI
 lib/libdiag.so
 lib/libdsi_netctrl.so
@@ -143,22 +172,17 @@ lib/libril-qcril-hook-oem.so
 # Sensors
 lib/hw/sensors.msm8960.so
 
-# TrustZone
-etc/firmware/hcheck.b00
-etc/firmware/hcheck.b01
-etc/firmware/hcheck.b02
-etc/firmware/hcheck.b03
-etc/firmware/hcheck.mdt
+# Widevine
+lib/libQSEEComAPI.so
+vendor/lib/libwvm.so
+vendor/lib/libWVStreamControlAPI_L3.so
+
+# Widevine firmware
 etc/firmware/tzapps.b00
 etc/firmware/tzapps.b01
 etc/firmware/tzapps.b02
 etc/firmware/tzapps.b03
 etc/firmware/tzapps.mdt
-
-# Widevine
-lib/libQSEEComAPI.so
-vendor/lib/libwvm.so
-vendor/lib/libWVStreamControlAPI_L3.so
 
 # Wifi
 etc/firmware/fw_bcm4334.bin
