@@ -61,10 +61,6 @@ on init
     chmod 0660 /sys/class/htc_accelerometer/accelerometer/enable_cir_interrupt
     chmod 0660 /sys/class/bma250_powerkey/bma250/clear_powerkey_flag
 
-    #htc sensorhub
-    chown system system /sys/class/bma250_powerkey/bma250/clear_powerkey_flag
-    chmod 0660 /sys/class/bma250_powerkey/bma250/clear_powerkey_flag
-
 # On emmc mount the partition containing firmware
 on fs
     # create firmware mount points
