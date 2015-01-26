@@ -55,12 +55,6 @@ on init
 
     symlink /storage/usb      /mnt/usbdisk
 
-    #set G-Sensor and Compass permissions
-    chown system system /sys/class/htc_accelerometer/accelerometer/enable_cir_interrupt
-    chown system system /sys/class/bma250_powerkey/bma250/clear_powerkey_flag
-    chmod 0660 /sys/class/htc_accelerometer/accelerometer/enable_cir_interrupt
-    chmod 0660 /sys/class/bma250_powerkey/bma250/clear_powerkey_flag
-
 # On emmc mount the partition containing firmware
 on fs
     # create firmware mount points
@@ -93,12 +87,7 @@ on post-fs-data
 
     # QC audio/radio
     mkdir /data/audio 2775 media audio
-    chmod 2775 /data/audio
     mkdir /data/radio 2770 radio radio
-    chmod 2770 /data/radio
-
-    # Link widevine drm library path
-    symlink /system/vendor/lib /vendor/lib
 
     mkdir /data/misc/wifi 0770 wifi wifi
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
@@ -151,7 +140,7 @@ on boot
     mkdir /dev/socket/qmux_gps 2770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
-    # 4.3 requires this
+    # RIL daemon needs access to the command line
     chmod 0644 /proc/cmdline
 
     # Give system access to wpa_supplicant.conf for backup and restore
@@ -211,6 +200,7 @@ on boot
     chown media system /sys/camera_htccallback/htccallback
     chown media system /sys/camera_attrs/videochat
 
+
     # For Flashlight Restriction
     chown system system /sys/camera_led_status/led_hotspot_status
     chown radio system /sys/camera_led_status/led_ril_status
@@ -220,12 +210,6 @@ on boot
 
     # Set volume key wake up attribute file permission
     chown media media /sys/keyboard/vol_wakeup
-
-# Set touch permissions
-    chown system system /sys/android_touch/unlock
-
-    chown media system /sys/camera_htccallback/htccallback
-    chown media system /sys/camera_attrs/videochat
 
 # for RIL to notify battery driver talking and network_search state
     chown radio radio /sys/class/power_supply/battery/phone_call
