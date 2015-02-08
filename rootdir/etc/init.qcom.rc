@@ -55,6 +55,12 @@ on init
 
     symlink /storage/usb      /mnt/usbdisk
 
+    chown compass system /dev/akm8975_aot
+    chown compass system /dev/akm8975_daemon
+    chmod 0640 /dev/akm8975_aot
+    chmod 0640 /dev/akm8975_daemon
+
+
 # On emmc mount the partition containing firmware
 on fs
     # create firmware mount points
@@ -220,6 +226,11 @@ on boot
     chmod 0220 /sys/class/power_supply/battery/navigation
 
 # Services start here
+service akmd /system/bin/akmd
+    class main
+    user system
+    group system misc input
+
 service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
     disabled
     oneshot
