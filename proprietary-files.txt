@@ -185,7 +185,7 @@ etc/firmware/tzapps.b02
 etc/firmware/tzapps.b03
 etc/firmware/tzapps.mdt
 
-# Wifi
+# WiFi
 etc/firmware/fw_bcm4334.bin
 etc/firmware/fw_bcm4334_apsta.bin
 etc/firmware/fw_bcm4334_p2p.bin

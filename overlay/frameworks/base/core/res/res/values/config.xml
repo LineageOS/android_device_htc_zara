@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
-/*
-** Copyright 2013, The Android Open Source Project
+/* Copyright (c) 2013, The Linux Foundation. All rights reserved.
+** Not a Contribution.
+**
+** Copyright 2015, The Android Open Source Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -72,12 +74,6 @@
         <item>"softap.*"</item>
     </string-array>
 
-    <!-- disable menu hard key in non-pattern lockscreen -->
-    <bool name="config_disableMenuKeyInLockScreen">true</bool>
-
-    <!-- Set to false to enable CRT-off animation. -->
-    <bool name="config_animateScreenLights">false</bool>
-
     <!-- Control the behavior when the user double-taps the home button.
               0 - Nothing
               1 - Menu Key
@@ -89,9 +85,6 @@
          policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
     -->
     <integer name="config_doubleTapOnHomeBehavior">1</integer>
-
-    <!-- Disable lockscreen translucent decor by default -->
-    <bool name="config_enableLockScreenTranslucentDecor">true</bool>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
          bluetooth interfaces.  If the device doesn't want to support tethering over bluetooth this
@@ -108,7 +101,6 @@
         <item>1</item>
         <item>5</item>
         <item>7</item>
-        <item>9</item>
     </integer-array>
 
     <!-- Boolean indicating whether the wifi chipset has dual frequency band support -->
@@ -236,7 +228,6 @@
         <item>0</item>
         <item>0</item>
     </integer-array>
-
 
     <!-- Whether WiFi display is supported by this device.
          There are many prerequisites for this feature to work correctly.

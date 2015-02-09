@@ -29,7 +29,7 @@ LOCAL_PATH := device/htc/zara
 BOARD_HAVE_HTC_CSDCLIENT := true
 BOARD_USES_FLUENCE_INCALL := true # use DMIC in call only
 BOARD_USES_SEPERATED_AUDIO_INPUT := true # use distinct voice recog/camcorder use cases
-BOARD_USES_SEPERATED_VOICE_SPEAKER := true # use distinct voice speaker user case
+BOARD_USES_SEPERATED_VOICE_SPEAKER := true # use distinct voice speaker use case
 BOARD_USES_SEPERATED_VOIP := true # use distinct VOIP use cases
 
 # Bluetooth

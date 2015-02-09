@@ -1,2 +1,1 @@
-add_lunch_combo cm_zara-eng
 add_lunch_combo cm_zara-userdebug
