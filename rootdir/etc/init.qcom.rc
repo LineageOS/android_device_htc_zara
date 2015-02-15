@@ -137,13 +137,13 @@ on boot
     chown media_rw media_rw /data/media
 
     # radio
-    mkdir /dev/socket/qmux_radio 2770 radio radio
+    mkdir /dev/socket/qmux_radio 0770 radio radio
     chmod 2770 /dev/socket/qmux_radio
-    mkdir /dev/socket/qmux_audio 2770 audio audio
+    mkdir /dev/socket/qmux_audio 0770 audio audio
     chmod 2770 /dev/socket/qmux_audio
-    mkdir /dev/socket/qmux_bluetooth 2770 bluetooth bluetooth
+    mkdir /dev/socket/qmux_bluetooth 0770 bluetooth bluetooth
     chmod 2770 /dev/socket/qmux_bluetooth
-    mkdir /dev/socket/qmux_gps 2770 gps gps
+    mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
     # RIL daemon needs access to the command line

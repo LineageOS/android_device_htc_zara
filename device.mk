@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,95 +14,13 @@
 # limitations under the License.
 #
 
-# Common msm8960 configs
-$(call inherit-product, device/htc/msm8960-common/msm8960.mk)
-
-# Overlay
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
-
-# Permissions
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
-    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
-    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml
-
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
-
-# Screen density
-PRODUCT_AAPT_CONFIG := normal hdpi
-PRODUCT_AAPT_PREF_CONFIG := hdpi
-
-# Boot animation
-TARGET_SCREEN_HEIGHT := 960
-TARGET_SCREEN_WIDTH := 540
-
-$(call inherit-product-if-exists, frameworks/native/build/phone-hdpi-dalvik-heap.mk)
-
-# Audio
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/dsp/snd_soc_msm/snd_soc_msm_Sitar:system/etc/snd_soc_msm/snd_soc_msm_Sitar
-
-# Camera
-PRODUCT_PACKAGES += \
-    camera.msm8960
-
-# GPS
-PRODUCT_PACKAGES += \
-    gps.msm8960
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
-
-
-# Qualcomm scripts
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
-    $(LOCAL_PATH)/configs/init.qcom.q6_links.sh:/system/etc/init.qcom.q6_links.sh \
-    $(LOCAL_PATH)/configs/init.qcom.radio_links.sh:/system/etc/init.qcom.radio_links.sh
-
-# Media
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
-
-# Input device config
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/idc/projector_input.idc:system/usr/idc/projector_input.idc \
-    $(LOCAL_PATH)/idc/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc
-
-# Keylayouts
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/keylayout/device-keypad.kl:system/usr/keylayout/device-keypad.kl \
-    $(LOCAL_PATH)/keylayout/projector-Keypad.kl:system/usr/keylayout/projector-Keypad.kl \
-    $(LOCAL_PATH)/keylayout/sr_touchscreen.kl:system/usr/keylayout/sr_touchscreen.kl \
-    $(LOCAL_PATH)/keylayout/synaptics-rmi-touchscreen.kl:system/usr/keylayout/synaptics-rmi-touchscreen.kl
-
-# Keystore
-# PRODUCT_PACKAGES += \
-#  keystore.msm8960
+# call the proprietary setup
+$(call inherit-product, vendor/htc/zara/zara-vendor.mk)
 
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    init.qcom.rc \
-    init.qcom.usb.rc \
-    ueventd.qcom.rc
+    init.qcom.rc
 
-# Thermal
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/thermald.conf:system/etc/thermald.conf
-
-# WiFi
-PRODUCT_PACKAGES += \
-    libnetcmdiface
-
-# Wifi config
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/calibration.gpio4:/system/etc/calibration.gpio4 \
-    $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:/system/etc/wifi/p2p_supplicant_overlay.conf \
-    $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:/system/etc/wifi/wpa_supplicant_overlay.conf
-
-
-# call the proprietary setup
-$(call inherit-product, vendor/htc/zara/zara-vendor.mk)
+# Inherit from zara-common
+$(call inherit-product, device/htc/zara-common/zara-common.mk)

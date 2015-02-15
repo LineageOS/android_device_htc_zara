@@ -1,4 +1,6 @@
-# Device configuration for HTC Desire 601 (zara)
+Copyright 2015 - The CyanogenMod Project
+
+# Device configuration for HTC Desire 601 (zaraul)
 
 ## Spec Sheet
 
