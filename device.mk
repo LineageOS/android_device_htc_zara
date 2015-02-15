@@ -18,9 +18,9 @@
 $(call inherit-product, vendor/htc/zara/zara-vendor.mk)
 
 # Ramdisk
-PRODUCT_PACKAGES += \
-    fstab.qcom \
-    init.qcom.rc
+PRODUCT_COPY_FILES += \
+    device/htc/zara/rootdir/etc/fstab.qcom:root/fstab.qcom \
+    device/htc/zara/rootdir/etc/init.qcom.rc:root/init.qcom.rc
 
 # Inherit from zara-common
 $(call inherit-product, device/htc/zara-common/zara-common.mk)
