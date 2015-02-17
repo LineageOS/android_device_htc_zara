@@ -1,4 +1,4 @@
-# Copyright (C) 2013 The Android Open Source Project
+# Copyright (C) 2015 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,10 +24,7 @@
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
 
-# Inherit from common msm8960
--include device/htc/msm8960-common/BoardConfigCommon.mk
 # inherit from common zara-common
-
 include device/htc/zara-common/BoardConfigCommon.mk
 
 # Assert
@@ -44,7 +41,6 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1912601600
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5100273664
 BOARD_CACHEIMAGE_PARTITION_SIZE := 251657728
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
-
 
 # inherit from the proprietary version
 include vendor/htc/zara/BoardConfigVendor.mk

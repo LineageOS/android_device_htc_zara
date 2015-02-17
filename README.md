@@ -18,7 +18,7 @@ Copyright 2015 - The CyanogenMod Project
 | Camera                  | 5 MP, 2592 х 1944 pixels     |
 | Release Date            | October 2013                    |
 
-This device tree  is only for GSM variants - ZARA_UL - WIP
+This device tree  is only for GSM variants - ZARA_UL
 ## Device Picture
 
 ![HTC Desire 601](http://www.htc.com/managed-assets/shared/desktop/smartphones/htc-desire-601/marquee/htc-desire-601-en-slide-02.png "HTC Desire 601")
