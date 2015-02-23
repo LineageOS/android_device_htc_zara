@@ -166,13 +166,6 @@ on boot
     # Vibrator
     chown system system /sys/class/timed_output/vibrator/voltage_level
 
-    # Bluetooth
-    chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
-    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
-    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
-    chmod 0660 /sys/class/rfkill/rfkill0/state
-    chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
-
     # bluetooth MAC address programming
     chown bluetooth bluetooth /sys/module/htc_bdaddress/parameters/bdaddress
     setprop ro.bt.bdaddr_path /sys/module/htc_bdaddress/parameters/bdaddress
