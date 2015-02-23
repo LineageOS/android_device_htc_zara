@@ -7,4 +7,4 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 PRODUCT_DEVICE := zara
 PRODUCT_NAME := cm_zara
 
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_FINGERPRINT="htc/htc_europe/zara:4.4.2/KOT49H/334166.10:user/release-keys" PRIVATE_BUILD_DESC="5.11.401.10 CL334166 release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_FINGERPRINT="htc/voda-hutch_au/zara:4.4.2/KOT49H/315961.10:user/release-keys" PRIVATE_BUILD_DESC="2.14.862.10 CL315961 release-keys"
