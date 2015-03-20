@@ -21,7 +21,7 @@ Copyright 2015 - The CyanogenMod Project
 This device tree  is only for GSM variants - ZARA_UL
 ## Device Picture
 
-![HTC Desire 601](http://www.htc.com/managed-assets/shared/desktop/smartphones/htc-desire-601/marquee/htc-desire-601-en-slide-02.png "HTC Desire 601")
+![HTC Desire 601](http://wiki.cyanogenmod.org/images/7/7c/Zara.png "HTC Desire 601")
 
 ## Copyright
 
