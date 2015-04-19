@@ -19,7 +19,6 @@ $(call inherit-product, device/htc/zara-common/zara-common.mk)
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-    device/htc/zara/rootdir/etc/fstab.qcom:root/fstab.qcom \
     device/htc/zara/rootdir/etc/init.qcom.rc:root/init.qcom.rc
 
 # call the proprietary setup
