@@ -34,6 +34,7 @@ on early-init
 
 on init
     export LD_PRELOAD "/system/lib/libhtc_symbols.so:/system/lib/libboringssl-compat.so"
+    export LD_SHIM_LIBS "/system/lib/hw/camera.vendor.msm8960.so|libcamera_shim.so"
 
     # Support a legacy path
     symlink /storage/sdcard /mnt/sdcard
@@ -126,6 +127,9 @@ on boot
 
     # RIL daemon needs access to the command line
     chmod 0644 /proc/cmdline
+
+    # Legacy EGL hack
+    symlink /system/vendor/lib/egl /egl
 
     # Give system access to wpa_supplicant.conf for backup and restore
     mkdir /data/misc/wifi/sockets 0771 wifi wifi
